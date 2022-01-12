@@ -1,0 +1,109 @@
+<template>
+    <div class="item">
+        <Quantity :item="item" class="item--quantity"/>
+        <div class="img-container">
+            <img class="item--img" :src="imagePath" alt="">
+        </div>
+        <div class="content">
+            <h3 class="item--name">{{item.name}}</h3>
+            <a class="item--observation" href="">Adicionar observação</a>
+        </div>
+        <p class="item--price">{{item.price | currency}}</p>
+    </div>
+</template>
+
+<script>
+import Quantity from '@/components/Quantity.vue'
+export default {
+    name: 'CartItem',
+    components: {
+        Quantity
+    },
+    props: {
+        item: {}
+    },
+    filters: {
+        currency(value) {
+            return `R$ ${value.toLocaleString('pt-br',{minimumFractionDigits: 2})}`
+        }
+    },
+    computed: {
+        imagePath() {
+            return require(`../assets/images/${this.item.id}.png`)
+        }
+    },
+}
+</script>
+
+<style lang="less" scoped>
+    .item {
+        display: flex;
+        padding: 20px 0px;
+        border-bottom: 1px solid @light-grey;
+
+        &--img-container {
+            border-radius: 8px;
+            background: @light-yellow;
+            width: 81px;
+            height: 66px;
+            display: flex;
+            align-items: center;
+        }
+
+        &--img {
+            width: 65px;
+            display: block;
+            margin: auto;
+        }
+
+        &--name {
+            margin: 0;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        &--observation {
+            font-weight: 500;
+            font-size: 12px;
+            color: @dark-grey;
+            text-decoration: underline;
+        }
+
+        .content {
+            flex-flow: 1;
+            padding: 0 20px;
+        }
+
+        &--price {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 27px;
+            color: @yellow;
+        }
+
+        @media @tablets {
+            flex-wrap: wrap;
+
+            &--img-container {
+                order: 1;
+            }
+
+            .content {
+                order: 2;
+            }
+
+            &--quantity {
+                order: 3;
+                padding: 0;
+                width: 81px;
+                justify-content: center;
+            }
+
+            &--price {
+                order: 4;
+                padding: 0 20px;
+                margin: 5px 0;
+            }
+        }
+    }
+</style>
