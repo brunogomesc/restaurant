@@ -2,7 +2,7 @@
     <div class="item" @click="addToCart">
         <div class="container">
             <div class="item--tag" v-if="item.offer">Oferta</div>
-            <img class="item--img" :src="imagePath" alt="Burguer">
+            <img class="item--img" :src="imagePath" alt="Lanche">
         </div>
         <div class="content">
             <h2 class="item--name">{{item.name}}</h2>
@@ -30,6 +30,7 @@ export default {
     computed: {
         imagePath() {
             if(this.item?.id) return
+            console.log(this.item.id)
             return require(`../assets/images/${this.item.id}.png`)
         }
     },
