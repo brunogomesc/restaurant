@@ -37,14 +37,18 @@ export default {
                 { label: "Combos", icon: "Combo", id: "combo" },
                 { label: "Doces", icon: "Deserts", id: "deserts" },
                 { label: "Bebidas", icon: "Drinks", id: "drinks" },
-                { label: "Burguers", icon: "Burguer", id: "burguer" },
+                { label: "Burguers", icon: "Burguer", id: "burguers" },
             ],
-            selectedCategory: "pizza",
+            selectedCategory: '',
         };
+    },
+    mounted() {
+        this.onCategoryClick('pizza');
     },
     methods: {
         onCategoryClick(id) {
             this.selectedCategory = id;
+            this.$store.dispatch('changeCategory', id); 
         },
         isActive(id) {
             return this.selectedCategory === id;
@@ -55,6 +59,7 @@ export default {
 
 <style lang="less" scoped>
 .category-menu {
+    min-width: 130px;
     width: 130px;
     height: 100vh;
     background: white;
@@ -111,7 +116,6 @@ export default {
             display: flex;
             margin: 20px;
             overflow: scroll;
-            justify-content: center;
 
             li {
                 min-width: 78px;
