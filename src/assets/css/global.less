@@ -39,6 +39,26 @@ textarea {
   padding: 8px 35px;
 }
 
+input[type="text"] {
+  height: 47px;
+  border-radius: 8px;
+  border: 1px solid @dark-grey;
+  color: @dark-grey;
+  padding: 0 15px;
+
+  &.error {
+    border: 1px solid @error-color;
+
+    &::placeholder {
+      color: @error-color;
+    }
+  }
+}
+
+textarea {
+  padding: 15px;
+}
+
 @media @tablets {
   body {
     background: white;

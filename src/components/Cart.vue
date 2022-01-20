@@ -12,7 +12,7 @@
             <span>Total: </span>
             <span class="price">{{getCartTotal | currency}}</span>
         </div>
-        <button class="primary-button payment button" @click="goToPayment">Finalizar Compra</button>
+        <button class="primary-button payment button" @click="goToPayment" v-if="!!cartList.length">Finalizar Compra</button>
     </div>
 </template>
 
@@ -84,6 +84,7 @@ export default {
             font-size: 18px;
             text-align: right;
             margin-top: 30px;
+            margin-bottom: 10px;
 
             .price {
                 color: @yellow;
